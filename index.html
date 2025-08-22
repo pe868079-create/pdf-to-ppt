@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DocConvert Pro | PDF ↔ PPT Converter</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+
+        :root {
+
+            --primary-red: #ff0033;
+
+            --dark-red: #cc0000;
+
+            --black: #111111;
+
+            --dark-gray: #222222;
+
+            --light-gray: #f5f5f5;
+
+            --white: #ffffff;
+
+        }
+
+        
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        }
+
+        
+
+        body {
+
+            background-color: var(--light-gray);
+
+            color: var(--black);
+
+            overflow-x: hidden;
+
+        }
+
+        
+
+        /* Header Styles */
+
+        header {
+
+            background: linear-gradient(135deg, var(--black), var(--dark-gray));
+
+            color: var(--white);
+
+            padding: 1rem 2rem;
+
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+            position: fixed;
+
+            width: 100%;
+
+            top: 0;
+
+            z-index: 1000;
+
+        }
+
+        
+
+        nav {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+        
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            font-size: 1.8rem;
+
+            font-weight: 700;
+
+            color: var(--primary-red);
+
+            text-decoration: none;
+
+            animation: pulse 2s infinite;
+
+        }
+
+        
+
+        .logo i {
+
+            margin-right: 10px;
+
+        }
+
+        
+
+        .nav-links {
+
+            display: flex;
+
+            list-style: none;
+
+        }
+
+        
+
+        .nav-links li {
+
+            margin-left: 2rem;
+
+        }
+
+        
+
+        .nav-links a {
+
+            color: var(--white);
+
+            text-decoration: none;
+
+            font-weight: 500;
+
+            font-size: 1.1rem;
+
+            transition: all 0.3s ease;
+
+            position: relative;
+
+        }
+
+        
+
+        .nav-links a:hover {
+
+            color: var(--primary-red);
+
+        }
+
+        
+
+        .nav-links a::after {
+
+            content: '';
+
+            position: absolute;
+
+            width: 0;
+
+            height: 2px;
+
+            bottom: -5px;
+
+            left: 0;
+
+            background-color: var(--primary-red);
+
+            transition: width 0.3s ease;
+
+        }
+
+        
+
+        .nav-links a:hover::after {
+
+            width: 100%;
+
+        }
+
+        
+
+        /* Hero Section */
+
+        .hero {
+
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+
+            background-size: cover;
+
+            background-position: center;
+
+            height: 100vh;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            color: var(--white);
+
+            padding: 0 2rem;
+
+        }
+
+        
+
+        .hero h1 {
+
+            font-size: 3.5rem;
+
+            margin-bottom: 1.5rem;
+
+            animation: slideInDown 1s ease;
+
+        }
+
+        
+
+        .hero h1 span {
+
+            color: var(--primary-red);
+
+        }
+
+        
+
+        .hero p {
+
+            font-size: 1.3rem;
+
+            margin-bottom: 2rem;
+
+            max-width: 800px;
+
+            animation: slideInUp 1s ease;
+
+        }
+
+        
+
+        .cta-button {
+
+            display: inline-block;
+
+            background-color: var(--primary-red);
+
+            color: var(--white);
+
+            padding: 0.8rem 2rem;
+
+            border-radius: 50px;
+
+            font-size: 1.2rem;
+
+            font-weight: 600;
+
+            text-decoration: none;
+
+            transition: all 0.3s ease;
+
+            border: none;
+
+            cursor: pointer;
+
+            animation: pulse 2s infinite;
+
+        }
+
+        
+
+        .cta-button:hover {
+
+            background-color: var(--dark-red);
+
+            transform: translateY(-3px);
+
+            box-shadow: 0 10px 20px rgba(255, 0, 51, 0.3);
+
+        }
+
+        
+
+        /* Tools Section */
+
+        .tools-section {
+
+            padding: 5rem 2rem;
+
+            background-color: var(--white);
+
+        }
+
+        
+
+        .section-title {
+
+            text-align: center;
+
+            margin-bottom: 3rem;
+
+            font-size: 2.5rem;
+
+            color: var(--black);
+
+            position: relative;
+
+        }
+
+        
+
+        .section-title::after {
+
+            content: '';
+
+            position: absolute;
+
+            width: 80px;
+
+            height: 4px;
+
+            background-color: var(--primary-red);
+
+            bottom: -10px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+        }
+
+        
+
+        .tools-container {
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 2rem;
+
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+        }
+
+        
+
+        .tool-card {
+
+            background-color: var(--white);
+
+            border-radius: 10px;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+            padding: 2rem;
+
+            width: 100%;
+
+            max-width: 500px;
+
+            transition: all 0.3s ease;
+
+            border: 1px solid #eee;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+        
+
+        .tool-card:hover {
+
+            transform: translateY(-10px);
+
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+
+        }
+
+        
+
+        .tool-card::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 5px;
+
+            height: 100%;
+
+            background-color: var(--primary-red);
+
+        }
+
+        
+
+        .tool-icon {
+
+            font-size: 3rem;
+
+            color: var(--primary-red);
+
+            margin-bottom: 1.5rem;
+
+        }
+
+        
+
+        .tool-title {
+
+            font-size: 1.8rem;
+
+            margin-bottom: 1rem;
+
+            color: var(--black);
+
+        }
+
+        
+
+        .tool-description {
+
+            color: #666;
+
+            margin-bottom: 1.5rem;
+
+            line-height: 1.6;
+
+        }
+
+        
+
+        .file-upload {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 1rem;
+
+            margin-bottom: 1.5rem;
+
+        }
+
+        
+
+        .file-input {
+
+            display: none;
+
+        }
+
+        
+
+        .file-label {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 1rem;
+
+            background-color: var(--light-gray);
+
+            border: 2px dashed #ccc;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+        
+
+        .file-label:hover {
+
+            border-color: var(--primary-red);
+
+            background-color: rgba(255, 0, 51, 0.05);
+
+        }
+
+        
+
+        .file-name {
+
+            margin-left: 10px;
+
+            font-size: 0.9rem;
+
+            color: var(--black);
+
+        }
+
+        
+
+        .upload-progress {
+
+            position: absolute;
+
+            bottom: 0;
+
+            left: 0;
+
+            height: 3px;
+
+            background-color: var(--primary-red);
+
+            width: 0%;
+
+            transition: width 0.3s ease;
+
+        }
+
+        
+
+        .convert-btn {
+
+            background-color: var(--primary-red);
+
+            color: var(--white);
+
+            border: none;
+
+            padding: 0.8rem;
+
+            border-radius: 5px;
+
+            font-size: 1rem;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+        }
+
+        
+
+        .convert-btn:hover {
+
+            background-color: var(--dark-red);
+
+        }
+
+        
+
+        .convert-btn:disabled {
+
+            background-color: #ccc;
+
+            cursor: not-allowed;
+
+        }
+
+        
+
+        .download-btn {
+
+            background-color: var(--black);
+
+            color: var(--white);
+
+            border: none;
+
+            padding: 0.8rem;
+
+            border-radius: 5px;
+
+            font-size: 1rem;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+
+            display: none;
+
+            text-align: center;
+
+            text-decoration: none;
+
+        }
+
+        
+
+        .download-btn:hover {
+
+            background-color: #333;
+
+        }
+
+        
+
+        .progress-container {
+
+            width: 100%;
+
+            background-color: #e0e0e0;
+
+            border-radius: 5px;
+
+            margin: 1rem 0;
+
+            display: none;
+
+        }
+
+        
+
+        .progress-bar {
+
+            height: 20px;
+
+            border-radius: 5px;
+
+            background-color: var(--primary-red);
+
+            width: 0%;
+
+            transition: width 0.3s ease;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: white;
+
+            font-size: 0.8rem;
+
+        }
+
+        
+
+        /* Features Section */
+
+        .features-section {
+
+            padding: 5rem 2rem;
+
+            background-color: var(--light-gray);
+
+        }
+
+        
+
+        .features-container {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+
+            gap: 2rem;
+
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+        }
+
+        
+
+        .feature-card {
+
+            background-color: var(--white);
+
+            border-radius: 10px;
+
+            padding: 2rem;
+
+            width: calc(33.333% - 2rem);
+
+            min-width: 300px;
+
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+
+            transition: all 0.3s ease;
+
+            text-align: center;
+
+        }
+
+        
+
+        .feature-card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+        }
+
+        
+
+        .feature-icon {
+
+            font-size: 2.5rem;
+
+            color: var(--primary-red);
+
+            margin-bottom: 1.5rem;
+
+        }
+
+        
+
+        .feature-title {
+
+            font-size: 1.5rem;
+
+            margin-bottom: 1rem;
+
+            color: var(--black);
+
+        }
+
+        
+
+        .feature-description {
+
+            color: #666;
+
+            line-height: 1.6;
+
+        }
+
+        
+
+        /* Footer */
+
+        footer {
+
+            background: linear-gradient(135deg, var(--black), var(--dark-gray));
+
+            color: var(--white);
+
+            padding: 3rem 2rem;
+
+            text-align: center;
+
+        }
+
+        
+
+        .footer-content {
+
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+        }
+
+        
+
+        .footer-logo {
+
+            font-size: 2rem;
+
+            font-weight: 700;
+
+            color: var(--primary-red);
+
+            margin-bottom: 1.5rem;
+
+        }
+
+        
+
+        .footer-links {
+
+            display: flex;
+
+            list-style: none;
+
+            margin-bottom: 2rem;
+
+        }
+
+        
+
+        .footer-links li {
+
+            margin: 0 1rem;
+
+        }
+
+        
+
+        .footer-links a {
+
+            color: var(--white);
+
+            text-decoration: none;
+
+            font-weight: 500;
+
+            transition: all 0.3s ease;
+
+        }
+
+        
+
+        .footer-links a:hover {
+
+            color: var(--primary-red);
+
+        }
+
+        
+
+        .social-icons {
+
+            display: flex;
+
+            margin-bottom: 2rem;
+
+        }
+
+        
+
+        .social-icons a {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 50%;
+
+            background-color: rgba(255, 255, 255, 0.1);
+
+            color: var(--white);
+
+            margin: 0 0.5rem;
+
+            transition: all 0.3s ease;
+
+        }
+
+        
+
+        .social-icons a:hover {
+
+            background-color: var(--primary-red);
+
+            transform: translateY(-3px);
+
+        }
+
+        
+
+        .copyright {
+
+            color: #aaa;
+
+            font-size: 0.9rem;
+
+        }
+
+        
+
+        /* Animations */
+
+        @keyframes slideInDown {
+
+            from {
+
+                transform: translateY(-50px);
+
+                opacity: 0;
+
+            }
+
+            to {
+
+                transform: translateY(0);
+
+                opacity: 1;
+
+            }
+
+        }
+
+        
+
+        @keyframes slideInUp {
+
+            from {
+
+                transform: translateY(50px);
+
+                opacity: 0;
+
+            }
+
+            to {
+
+                transform: translateY(0);
+
+                opacity: 1;
+
+            }
+
+        }
+
+        
+
+        @keyframes pulse {
+
+            0% {
+
+                transform: scale(1);
+
+            }
+
+            50% {
+
+                transform: scale(1.05);
+
+            }
+
+            100% {
+
+                transform: scale(1);
+
+            }
+
+        }
+
+        
+
+        /* Responsive Design */
+
+        @media (max-width: 768px) {
+
+            .hero h1 {
+
+                font-size: 2.5rem;
+
+            }
+
+            
+
+            .hero p {
+
+                font-size: 1.1rem;
+
+            }
+
+            
+
+            .nav-links {
+
+                display: none;
+
+            }
+
+            
+
+            .feature-card {
+
+                width: 100%;
+
+            }
+
+            
+
+            .footer-links {
+
+                flex-direction: column;
+
+            }
+
+            
+
+            .footer-links li {
+
+                margin: 0.5rem 0;
+
+            }
+
+        }
+
+        
+
+        /* Status Message */
+
+        .status-message {
+
+            display: none;
+
+            padding: 1rem;
+
+            margin: 1rem 0;
+
+            border-radius: 5px;
+
+            text-align: center;
+
+        }
+
+        
+
+        .success {
+
+            background-color: rgba(0, 200, 0, 0.1);
+
+            color: green;
+
+            border: 1px solid green;
+
+        }
+
+        
+
+        .error {
+
+            background-color: rgba(200, 0, 0, 0.1);
+
+            color: red;
+
+            border: 1px solid red;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header>
+
+        <nav>
+
+            <a href="#" class="logo">
+
+                <i class="fas fa-exchange-alt"></i> DocConvert Pro
+
+            </a>
+
+            <ul class="nav-links">
+
+                <li><a href="https://www.youtube.com/@techpk1249">HOME</a></li>
+
+                <li><a href="https://www.youtube.com/@techpk1249">MORE TOOLS</a></li>
+
+                <li><a href="https://www.youtube.com/@techpk1249">ABOUT US</a></li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- Hero Section -->
+
+    <section class="hero">
+
+        <h1>Convert <span>PDF to PPT</span> and <span>PPT to PDF</span> Easily</h1>
+
+        <p>Transform your documents in seconds with our powerful conversion tools. No registration required, completely free to use!</p>
+
+        <a href="#tools" class="cta-button">Try Our Tools Now</a>
+
+    </section>
+
+<script type="text/javascript">
+	atOptions = {
+		'key' : 'acbf0ae1f41ee6b30243d7ff31aaca8b',
+		'format' : 'iframe',
+		'height' : 90,
+		'width' : 728,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/acbf0ae1f41ee6b30243d7ff31aaca8b/invoke.js"></script>
+
+    <!-- Tools Section -->
+
+    <section class="tools-section" id="tools">
+
+        <h2 class="section-title">Our Powerful Conversion Tools</h2>
+
+
+
+        <div class="tools-container">
+
+            <!-- PDF to PPT Tool -->
+
+            <div class="tool-card">
+
+                <div class="tool-icon">
+
+                    <i class="fas fa-file-pdf"></i> <i class="fas fa-arrow-right"></i> <i class="fas fa-file-powerpoint"></i>
+
+                </div>
+
+                <h3 class="tool-title">PDF to PowerPoint Converter</h3>
+
+                <p class="tool-description">Convert your PDF documents to editable PowerPoint presentations while preserving the original layout and formatting.</p>
+
+                
+
+                <div class="file-upload">
+
+                    <input type="file" id="pdf-upload" class="file-input" accept=".pdf">
+
+                    <label for="pdf-upload" class="file-label" id="pdf-label">
+
+                        <i class="fas fa-cloud-upload-alt"></i>
+
+                        <span class="file-name" id="pdf-file-name">Choose PDF File</span>
+
+                        <div class="upload-progress" id="pdf-upload-progress"></div>
+
+                    </label>
+
+                    <div id="pdf-status" class="status-message"></div>
+
+                    <div class="progress-container" id="pdf-progress-container">
+
+                        <div class="progress-bar" id="pdf-progress-bar">0%</div>
+
+                    </div>
+
+                    <button id="pdf-convert-btn" class="convert-btn" disabled>Convert to PowerPoint</button>
+
+                    <a id="pdf-download-btn" class="download-btn" download>
+
+                        <i class="fas fa-download"></i> Download PowerPoint
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            
+
+            <!-- PPT to PDF Tool -->
+
+            <div class="tool-card">
+
+                <div class="tool-icon">
+
+                    <i class="fas fa-file-powerpoint"></i> <i class="fas fa-arrow-right"></i> <i class="fas fa-file-pdf"></i>
+
+                </div>
+
+                <h3 class="tool-title">PowerPoint to PDF Converter</h3>
+
+                <p class="tool-description">Convert your PowerPoint presentations to high-quality PDF documents perfect for sharing and printing.</p>
+
+                
+
+                <div class="file-upload">
+
+                    <input type="file" id="ppt-upload" class="file-input" accept=".ppt,.pptx">
+
+                    <label for="ppt-upload" class="file-label" id="ppt-label">
+
+                        <i class="fas fa-cloud-upload-alt"></i>
+
+                        <span class="file-name" id="ppt-file-name">Choose PowerPoint File</span>
+
+                        <div class="upload-progress" id="ppt-upload-progress"></div>
+
+                    </label>
+
+                    <div id="ppt-status" class="status-message"></div>
+
+                    <div class="progress-container" id="ppt-progress-container">
+
+                        <div class="progress-bar" id="ppt-progress-bar">0%</div>
+
+                    </div>
+
+                    <button id="ppt-convert-btn" class="convert-btn" disabled>Convert to PDF</button>
+
+                    <a id="ppt-download-btn" class="download-btn" download>
+
+                        <i class="fas fa-download"></i> Download PDF
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+<script type="text/javascript">
+	atOptions = {
+		'key' : 'acbf0ae1f41ee6b30243d7ff31aaca8b',
+		'format' : 'iframe',
+		'height' : 90,
+		'width' : 728,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/acbf0ae1f41ee6b30243d7ff31aaca8b/invoke.js"></script>
+
+    <!-- Features Section -->
+
+    <section class="features-section">
+
+        <h2 class="section-title">Why Choose Our Tools</h2>
+
+        <div class="features-container">
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+
+                    <i class="fas fa-bolt"></i>
+
+                </div>
+
+                <h3 class="feature-title">Lightning Fast</h3>
+
+                <p class="feature-description">Our conversion tools work at blazing speeds, processing your documents in seconds, not minutes.</p>
+
+            </div>
+
+            
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+
+                    <i class="fas fa-lock"></i>
+
+                </div>
+
+                <h3 class="feature-title">Secure & Private</h3>
+
+                <p class="feature-description">Your files are processed securely and never stored on our servers after conversion.</p>
+
+            </div>
+
+            
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+
+                    <i class="fas fa-chart-line"></i>
+
+                </div>
+
+
+
+                <h3 class="feature-title">High Quality</h3>
+
+                <p class="feature-description">Get perfect conversions every time with our advanced document processing technology.</p>
+
+            </div>
+
+            
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+
+                    <i class="fas fa-desktop"></i>
+
+                </div>
+
+                <h3 class="feature-title">No Installation</h3>
+
+                <p class="feature-description">Works directly in your browser - no software to download or install.</p>
+
+            </div>
+
+            
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+
+                    <i class="fas fa-infinity"></i>
+
+                </div>
+
+                <h3 class="feature-title">Unlimited Conversions</h3>
+
+                <p class="feature-description">Convert as many files as you need - no limits, no watermarks.</p>
+
+            </div>
+
+            
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+
+                    <i class="fas fa-heart"></i>
+
+                </div>
+
+                <h3 class="feature-title">Completely Free</h3>
+
+                <p class="feature-description">All our tools are 100% free to use with no hidden costs or subscriptions.</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+<script type="text/javascript">
+	atOptions = {
+		'key' : 'acbf0ae1f41ee6b30243d7ff31aaca8b',
+		'format' : 'iframe',
+		'height' : 90,
+		'width' : 728,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/acbf0ae1f41ee6b30243d7ff31aaca8b/invoke.js"></script>
+
+    <!-- About Section -->
+
+    <section class="tools-section" id="about">
+
+        <h2 class="section-title">About Us</h2>
+
+        <div class="tools-container">
+
+            <div class="tool-card" style="max-width: 800px;">
+
+                <h3 class="tool-title">Our Mission</h3>
+
+                <p class="tool-description" style="text-align: center; margin-bottom: 2rem;">
+
+                    At DocConvert Pro, we believe in making document conversion simple, fast, and accessible to everyone. Our team of developers and designers work tirelessly to create tools that solve real problems for our users.
+
+                </p>
+
+                
+
+                <div style="text-align: center;">
+
+                    <div class="feature-icon">
+
+                        <i class="fas fa-users"></i>
+
+                    </div>
+
+                    <h3 style="margin-bottom: 1rem;">Join Millions of Satisfied Users</h3>
+
+                    <p style="color: #666; margin-bottom: 2rem;">
+
+                        Every month, thousands of professionals, students, and businesses trust our tools for their document conversion needs. We're proud to serve a growing community of users from around the world.
+
+                    </p>
+
+                    <a href="#tools" class="cta-button" style="display: inline-block;">Start Converting Now</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div class="footer-logo">
+
+                <i class="fas fa-exchange-alt"></i> DocConvert Pro
+
+            </div>
+
+            
+
+            <ul class="footer-links">
+
+                <li><a href="https://www.youtube.com/@techpk1249">Home</a></li>
+
+                <li><a href="#tools">Tools</a></li>
+
+                <li><a href="#about">About</a></li>
+
+                <li><a href="#">Privacy Policy</a></li>
+
+                <li><a href="#">Terms of Service</a></li>
+
+            </ul>
+
+            
+
+            <div class="social-icons">
+
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+
+                <a href="#"><i class="fab fa-twitter"></i></a>
+
+                <a href="#"><i class="fab fa-instagram"></i></a>
+
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+
+            </div>
+
+            
+
+            <p class="copyright">
+
+                &copy; 2023 DocConvert Pro. All rights reserved.
+
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // PDF to PPT Conversion
+
+            const pdfUpload = document.getElementById('pdf-upload');
+
+            const pdfConvertBtn = document.getElementById('pdf-convert-btn');
+
+            const pdfDownloadBtn = document.getElementById('pdf-download-btn');
+
+            const pdfStatus = document.getElementById('pdf-status');
+
+            const pdfFileName = document.getElementById('pdf-file-name');
+
+            const pdfLabel = document.getElementById('pdf-label');
+
+            const pdfUploadProgress = document.getElementById('pdf-upload-progress');
+
+            const pdfProgressContainer = document.getElementById('pdf-progress-container');
+
+            const pdfProgressBar = document.getElementById('pdf-progress-bar');
+
+            
+
+            // PPT to PDF Conversion
+
+            const pptUpload = document.getElementById('ppt-upload');
+
+            const pptConvertBtn = document.getElementById('ppt-convert-btn');
+
+            const pptDownloadBtn = document.getElementById('ppt-download-btn');
+
+            const pptStatus = document.getElementById('ppt-status');
+
+            const pptFileName = document.getElementById('ppt-file-name');
+
+            const pptLabel = document.getElementById('ppt-label');
+
+            const pptUploadProgress = document.getElementById('ppt-upload-progress');
+
+            const pptProgressContainer = document.getElementById('ppt-progress-container');
+
+            const pptProgressBar = document.getElementById('ppt-progress-bar');
+
+            
+
+            // Handle PDF file upload
+
+            pdfUpload.addEventListener('change', function() {
+
+                if (this.files.length) {
+
+                    const file = this.files[0];
+
+                    pdfFileName.textContent = file.name;
+
+                    pdfLabel.style.borderColor = 'var(--primary-red)';
+
+                    pdfConvertBtn.disabled = false;
+
+                    
+
+                    // Simulate upload progress
+
+                    simulateUploadProgress(pdfUploadProgress, function() {
+
+                        pdfStatus.textContent = 'PDF file uploaded successfully!';
+
+                        pdfStatus.className = 'status-message success';
+
+                        pdfStatus.style.display = 'block';
+
+                    });
+
+                }
+
+            });
+
+            
+
+            // Handle PPT file upload
+
+            pptUpload.addEventListener('change', function() {
+
+                if (this.files.length) {
+
+                    const file = this.files[0];
+
+                    pptFileName.textContent = file.name;
+
+                    pptLabel.style.borderColor = 'var(--primary-red)';
+
+                    pptConvertBtn.disabled = false;
+
+                    
+
+                    // Simulate upload progress
+
+                    simulateUploadProgress(pptUploadProgress, function() {
+
+                        pptStatus.textContent = 'PowerPoint file uploaded successfully!';
+
+                        pptStatus.className = 'status-message success';
+
+                        pptStatus.style.display = 'block';
+
+                    });
+
+                }
+
+            });
+
+            
+
+            // PDF to PPT Convert Button
+
+            pdfConvertBtn.addEventListener('click', function() {
+
+                if (!pdfUpload.files.length) {
+
+                    pdfStatus.textContent = 'Please select a PDF file first';
+
+                    pdfStatus.className = 'status-message error';
+
+                    pdfStatus.style.display = 'block';
+
+                    return;
+
+                }
+
+                
+
+                pdfStatus.style.display = 'none';
+
+                pdfProgressContainer.style.display = 'block';
+
+                pdfConvertBtn.disabled = true;
+
+                
+
+                // Simulate conversion with progress
+
+                simulateConversion(pdfProgressBar, function() {
+
+                    pdfConvertBtn.disabled = false;
+
+                    pdfDownloadBtn.style.display = 'block';
+
+                    pdfStatus.textContent = 'Conversion complete!';
+
+                    pdfStatus.className = 'status-message success';
+
+                    pdfStatus.style.display = 'block';
+
+                    
+
+                    // Set up download (in real app this would be the converted file)
+
+                    const fileName = pdfUpload.files[0].name.replace('.pdf', '.pptx');
+
+                    pdfDownloadBtn.setAttribute('download', fileName);
+
+                    pdfDownloadBtn.href = URL.createObjectURL(new Blob(['Simulated PPTX file'], { type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation' }));
+
+                });
+
+            });
+
+            
+
+            // PPT to PDF Convert Button
+
+            pptConvertBtn.addEventListener('click', function() {
+
+                if (!pptUpload.files.length) {
+
+                    pptStatus.textContent = 'Please select a PowerPoint file first';
+
+                    pptStatus.className = 'status-message error';
+
+                    pptStatus.style.display = 'block';
+
+                    return;
+
+                }
+
+                
+
+                pptStatus.style.display = 'none';
+
+                pptProgressContainer.style.display = 'block';
+
+                pptConvertBtn.disabled = true;
+
+                
+
+                // Simulate conversion with progress
+
+                simulateConversion(pptProgressBar, function() {
+
+                    pptConvertBtn.disabled = false;
+
+                    pptDownloadBtn.style.display = 'block';
+
+                    pptStatus.textContent = 'Conversion complete!';
+
+                    pptStatus.className = 'status-message success';
+
+                    pptStatus.style.display = 'block';
+
+                    
+
+                    // Set up download (in real app this would be the converted file)
+
+                    const fileName = pptUpload.files[0].name.replace('.pptx', '.pdf').replace('.ppt', '.pdf');
+
+                    pptDownloadBtn.setAttribute('download', fileName);
+
+                    pptDownloadBtn.href = URL.createObjectURL(new Blob(['Simulated PDF file'], { type: 'application/pdf' }));
+
+                });
+
+            });
+
+            
+
+            // Simulate upload progress
+
+            function simulateUploadProgress(progressElement, callback) {
+
+                let width = 0;
+
+                const interval = setInterval(function() {
+
+                    width += 10;
+
+                    progressElement.style.width = width + '%';
+
+                    
+
+                    if (width >= 100) {
+
+                        clearInterval(interval);
+
+                        if (callback) callback();
+
+                    }
+
+                }, 100);
+
+            }
+
+            
+
+            // Simulate conversion with percentage
+
+            function simulateConversion(progressBar, callback) {
+
+                let progress = 0;
+
+                const interval = setInterval(function() {
+
+                    progress += 5;
+
+                    progressBar.style.width = progress + '%';
+
+                    progressBar.textContent = progress + '%';
+
+                    
+
+                    if (progress >= 100) {
+
+                        clearInterval(interval);
+
+                        if (callback) callback();
+
+                    }
+
+                }, 200);
+
+            }
+
+            
+
+            // Smooth scrolling for navigation links
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+                anchor.addEventListener('click', function(e) {
+
+                    e.preventDefault();
+
+                    
+
+                    const targetId = this.getAttribute('href');
+
+                    if (targetId === '#') return;
+
+                    
+
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+
+                        window.scrollTo({
+
+                            top: targetElement.offsetTop - 80,
+
+                            behavior: 'smooth'
+
+                        });
+
+                    }
+
+                });
+
+            });
+
+            
+
+            // Animation on scroll
+
+            const animateOnScroll = function() {
+
+                const elements = document.querySelectorAll('.feature-card, .tool-card');
+
+                
+
+                elements.forEach(element => {
+
+                    const elementPosition = element.getBoundingClientRect().top;
+
+                    const windowHeight = window.innerHeight;
+
+                    
+
+                    if (elementPosition < windowHeight - 100) {
+
+                        element.style.opacity = '1';
+
+                        element.style.transform = 'translateY(0)';
+
+                    }
+
+                });
+
+            };
+
+            
+
+            // Set initial state for animation
+
+            document.querySelectorAll('.feature-card, .tool-card').forEach(element => {
+
+                element.style.opacity = '0';
+
+                element.style.transform = 'translateY(20px)';
+
+                element.style.transition = 'all 0.6s ease';
+
+            });
+
+            
+
+            window.addEventListener('scroll', animateOnScroll);
+
+            window.addEventListener('load', animateOnScroll);
+
+        });
+
+    </script>
+
+</body>
+
+
+</html>
